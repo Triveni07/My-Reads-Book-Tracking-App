@@ -18,11 +18,12 @@ class BooksApp extends Component {
         })
     }
 
-    AddBook(book) {
-        BooksAPI.update(book).then(book => {
-            this.setState(state => ({
-                books: state.books.concat([book])
-            }))
+    //To move books on the shelves: using update method form API
+    moveShelf = (book, shelf) => {
+        BooksAPI.update(book, shelf);
+
+        BooksAPI.getAll().then((books) => {
+            this.setState({ books: books })
         })
     }
 
@@ -31,6 +32,7 @@ class BooksApp extends Component {
             <div className="app">
                 <Home
                     books={this.state.books}
+                    moveShelf={this.moveShelf}
                 />
             </div>
         )

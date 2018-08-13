@@ -18,6 +18,7 @@ class ListBooks extends Component {
                                     <li key={book.id}>
                                         <Book
                                             book={book}
+                                            moveShelf={this.props.moveShelf}
                                         />
                                     </li>
                                 ))
@@ -34,6 +35,7 @@ class ListBooks extends Component {
                                     <li key={book.id}>
                                         <Book
                                             book={book}
+                                            moveShelf={this.props.moveShelf}
                                         />
                                     </li>
                                 ))
@@ -50,6 +52,7 @@ class ListBooks extends Component {
                                     <li key={book.id}>
                                         <Book
                                             book={book}
+                                            moveShelf={this.props.moveShelf}
                                         />
                                     </li>
                                 ))

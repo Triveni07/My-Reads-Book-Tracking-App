@@ -14,6 +14,7 @@ class Home extends Component {
                 <div className="list-books-content">
                     <ListBooks
                         books={this.props.books}
+                        moveShelf={this.props.moveShelf}
                     />
                 </div>
                 <div className="open-search">
