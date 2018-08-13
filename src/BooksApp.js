@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import * as BooksAPI from './BooksAPI'
 import Home from './Home'
+import SearchPage from './SearchPage'
 import './App.css'
 
 /**
@@ -34,6 +35,7 @@ class BooksApp extends Component {
                     books={this.state.books}
                     moveShelf={this.moveShelf}
                 />
+                <SearchPage />
             </div>
         )
     }
