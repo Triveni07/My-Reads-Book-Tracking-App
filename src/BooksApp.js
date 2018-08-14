@@ -11,7 +11,7 @@ import './App.css'
 class BooksApp extends Component {
     state = {
         books: [],
-        showSearchPage: false
+
     }
 
     componentDidMount() {
@@ -20,12 +20,13 @@ class BooksApp extends Component {
         })
     }
 
-    //To move books on the shelves: using update method form API
+    //To move books on the shelves: using update method from API
     moveShelf = (book, shelf) => {
-        BooksAPI.update(book, shelf);
-
-        BooksAPI.getAll().then((books) => {
-            this.setState({ books: books })
+        BooksAPI.update(book, shelf).then(() => {
+            book.shelf = shelf
+            this.setState(state => ({
+                books: state.books.filter(b => b.id !== book.id).concat(book)
+            }))
         })
     }
 
