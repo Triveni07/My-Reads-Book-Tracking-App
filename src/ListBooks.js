@@ -6,6 +6,7 @@ import Book from './Book'
  * and uses Book component to get all the books details
  */
 class ListBooks extends Component {
+
     render() {
         return (
             <div>
@@ -19,6 +20,7 @@ class ListBooks extends Component {
                                         <Book
                                             book={book}
                                             moveShelf={this.props.moveShelf}
+                                            currentShelf='currentlyReading'
                                         />
                                     </li>
                                 ))
@@ -36,6 +38,7 @@ class ListBooks extends Component {
                                         <Book
                                             book={book}
                                             moveShelf={this.props.moveShelf}
+                                            currentShelf='wantToRead'
                                         />
                                     </li>
                                 ))
@@ -53,6 +56,7 @@ class ListBooks extends Component {
                                         <Book
                                             book={book}
                                             moveShelf={this.props.moveShelf}
+                                            currentShelf='read'
                                         />
                                     </li>
                                 ))

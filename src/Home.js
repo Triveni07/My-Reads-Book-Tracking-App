@@ -20,8 +20,6 @@ class Home extends Component {
                         moveShelf={this.props.moveShelf}
                     />
                     )} />
-
-
                 </div>
                 <div className="open-search">
                     <Link to="/search">Add a book</Link>
