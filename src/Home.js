@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import ListBooks from './ListBooks'
 
 
@@ -13,14 +15,16 @@ class Home extends Component {
                     <h1>MyReads</h1>
                 </div>
                 <div className="list-books-content">
-                    <ListBooks
+                    <Route path="/" render={() => (<ListBooks
                         books={this.props.books}
                         moveShelf={this.props.moveShelf}
                     />
+                    )} />
+
 
                 </div>
                 <div className="open-search">
-                    <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a>
+                    <Link to="/search">Add a book</Link>
                 </div>
 
             </div>
