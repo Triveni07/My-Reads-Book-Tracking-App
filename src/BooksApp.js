@@ -35,7 +35,9 @@ class BooksApp extends Component {
                     books={this.state.books}
                     moveShelf={this.moveShelf}
                 />
-                <SearchPage />
+                <SearchPage
+                    moveShelf={this.moveShelf}
+                />
             </div>
         )
     }
