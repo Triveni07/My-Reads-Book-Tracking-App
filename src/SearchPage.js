@@ -11,6 +11,7 @@ class SearchPage extends Component {
 
     clearQuery = () => {
         this.setState({ query: '' })
+        this.setState({ searchedBooks: this.props.books })
     }
 
     updateQuery = (query) => {
@@ -41,6 +42,7 @@ class SearchPage extends Component {
     render() {
         const { books } = this.props
         const { moveShelf } = this.props
+        const { searchedBooks } = this.state
         return (
             <div className="search-books" >
                 <div className="search-books-bar">
@@ -54,9 +56,16 @@ class SearchPage extends Component {
                     </div>
                 </div>
                 <div className="search-books-results">
+                    {searchedBooks.length !== books.length && (
+                        <div className="showing-books">
+                            <span>Search result shows {searchedBooks.length} of total books...</span>
+                            <button onClick={this.clearQuery}>Show all added books</button>
+                        </div>
+                    )}
+
                     <ol className="books-grid">
                         {
-                            this.state.searchedBooks.map((searchedBook) => (
+                            searchedBooks.map((searchedBook) => (
                                 <li key={searchedBook.id}>
                                     <Book
                                         book={searchedBook}

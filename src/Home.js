@@ -21,10 +21,11 @@ class Home extends Component {
                 </div>
                 <div className="list-books-content">
                     <Switch>
-                        <Route path="/" render={() => (<ListBooks
-                            books={books}
-                            moveShelf={moveShelf}
-                        />
+                        <Route path="/" render={() => (
+                            <ListBooks
+                                books={books}
+                                moveShelf={moveShelf}
+                            />
                         )} />
                     </Switch>
                 </div>

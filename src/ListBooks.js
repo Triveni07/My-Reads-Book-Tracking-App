@@ -6,6 +6,7 @@ import Book from './Book'
  * and uses Book component to get all the books details
  */
 class ListBooks extends Component {
+
     render() {
         //ES6 object destructuring
         const { books } = this.props
