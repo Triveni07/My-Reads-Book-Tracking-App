@@ -7,6 +7,10 @@ import Book from './Book'
  */
 class ListBooks extends Component {
     render() {
+        //ES6 object destructuring
+        const { books } = this.props
+        const { moveShelf } = this.props
+
         return (
             <div>
                 <div className="bookshelf">
@@ -14,11 +18,11 @@ class ListBooks extends Component {
                     <div className="bookshelf-books">
                         <ol className="books-grid">
                             {
-                                this.props.books.filter(book => book.shelf === 'currentlyReading').map(book => (
+                                books.filter(book => book.shelf === 'currentlyReading').map(book => (
                                     <li key={book.id}>
                                         <Book
                                             book={book}
-                                            moveShelf={this.props.moveShelf}
+                                            moveShelf={moveShelf}
                                         />
                                     </li>
                                 ))
@@ -31,11 +35,11 @@ class ListBooks extends Component {
                     <div className="bookshelf-books">
                         <ol className="books-grid">
                             {
-                                this.props.books.filter(book => book.shelf === 'wantToRead').map(book => (
+                                books.filter(book => book.shelf === 'wantToRead').map(book => (
                                     <li key={book.id}>
                                         <Book
                                             book={book}
-                                            moveShelf={this.props.moveShelf}
+                                            moveShelf={moveShelf}
                                         />
                                     </li>
                                 ))
@@ -48,11 +52,11 @@ class ListBooks extends Component {
                     <div className="bookshelf-books">
                         <ol className="books-grid">
                             {
-                                this.props.books.filter(book => book.shelf === 'read').map(book => (
+                                books.filter(book => book.shelf === 'read').map(book => (
                                     <li key={book.id}>
                                         <Book
                                             book={book}
-                                            moveShelf={this.props.moveShelf}
+                                            moveShelf={moveShelf}
                                         />
                                     </li>
                                 ))

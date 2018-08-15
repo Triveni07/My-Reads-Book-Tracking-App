@@ -25,14 +25,17 @@ class SearchPage extends Component {
                 if (searchedBooks.error) {
                     this.setState({ searchedBooks: [] });
                 } else {
-                    if (searchedBooks.count !== 0) {
-                        const result = searchedBooks.map((book) => {
-                            const defaultBookShelf = 'none';
-                            const existingBook = this.state.searchedBooks.find((b) => b.id === book.id);
-                            book.shelf = !!existingBook ? existingBook.shelf : defaultBookShelf
-                            return book;
-                        });
-                        this.setState({ searchedBooks: result })
+                    if (!!searchedBooks) {
+                        if (searchedBooks.count !== 0) {
+                            const result = searchedBooks.map((book) => {
+                                const defaultBookShelf = 'none';
+                                const existingBook = this.state.searchedBooks.find((b) => b.id === book.id);
+                                book.shelf = !!existingBook ? existingBook.shelf : defaultBookShelf
+                                return book;
+                            });
+                            this.setState({ searchedBooks: result })
+                        }
+
                     }
                 }
             })

@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { Switch, Route } from 'react-router'
+import { Link } from 'react-router-dom'
 import ListBooks from './ListBooks'
 
 /** 
@@ -6,19 +8,27 @@ import ListBooks from './ListBooks'
 */
 class Home extends Component {
     render() {
+        //ES6 object destructuring
+        const { books } = this.props
+        const { moveShelf } = this.props
+
         return (
             <div className="list-books">
                 <div className="list-books-title">
                     <h1>MyReads</h1>
                 </div>
                 <div className="list-books-content">
-                    <ListBooks
-                        books={this.props.books}
-                        moveShelf={this.props.moveShelf}
-                    />
+                    <Switch>
+                        <Route path="/" render={() => (
+                            <ListBooks
+                                books={books}
+                                moveShelf={moveShelf}
+                            />
+                        )} />
+                    </Switch>
                 </div>
                 <div className="open-search">
-                    <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a>
+                    <Link to="/search">Add a book</Link>
                 </div>
             </div>
         );
