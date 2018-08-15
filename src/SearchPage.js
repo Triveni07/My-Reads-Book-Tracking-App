@@ -9,34 +9,42 @@ class SearchPage extends Component {
         searchedBooks: []
     }
 
+    clearQuery = () => {
+        this.setState({ query: '' })
+    }
+
     updateQuery = (query) => {
-        this.setState({
-            query: query
-        })
+        this.setState({ query })
         this.updateSearchedBooks(query);
     }
 
     updateSearchedBooks = (query) => {
         if (query) {
-            BooksAPI.search(query).then((searchedBooks) => {
+            BooksAPI.search(query, 30).then((searchedBooks) => {
                 if (searchedBooks.error) {
                     this.setState({ searchedBooks: [] });
                 } else {
-                    this.setState({ searchedBooks: searchedBooks });
+                    if (searchedBooks.count !== 0) {
+                        const result = searchedBooks.map((book) => {
+                            const defaultBookShelf = 'none';
+                            const existingBook = this.state.searchedBooks.find((b) => b.id === book.id);
+                            book.shelf = !!existingBook ? existingBook.shelf : defaultBookShelf
+                            return book;
+                        });
+                        this.setState({ searchedBooks: result })
+                    }
                 }
             })
-        } else {
-            this.setState({ searchedBooks: [] });
         }
     }
 
     render() {
+        const { books } = this.props
+        const { moveShelf } = this.props
         return (
-            <div className="search-books">
+            <div className="search-books" >
                 <div className="search-books-bar">
-
                     <Link to="/" className="close-search"> Close </Link>
-
                     <div className="search-books-input-wrapper">
                         <input type="text"
                             placeholder="Search by title or author"
@@ -52,7 +60,8 @@ class SearchPage extends Component {
                                 <li key={searchedBook.id}>
                                     <Book
                                         book={searchedBook}
-                                        moveShelf={this.props.moveShelf}
+                                        books={books}
+                                        moveShelf={moveShelf}
                                     />
                                 </li>
                             ))
