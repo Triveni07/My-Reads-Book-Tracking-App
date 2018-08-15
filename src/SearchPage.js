@@ -29,7 +29,7 @@ class SearchPage extends Component {
                         if (searchedBooks.count !== 0) {
                             const result = searchedBooks.map((book) => {
                                 const defaultBookShelf = 'none';
-                                const existingBook = this.state.searchedBooks.find((b) => b.id === book.id);
+                                const existingBook = this.props.books.find((b) => b.id === book.id);
                                 book.shelf = !!existingBook ? existingBook.shelf : defaultBookShelf
                                 return book;
                             });
@@ -46,6 +46,7 @@ class SearchPage extends Component {
         const { books } = this.props
         const { moveShelf } = this.props
         const { searchedBooks } = this.state
+
         return (
             <div className="search-books" >
                 <div className="search-books-bar">
