@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import * as BooksAPI from './BooksAPI'
 import Home from './Home'
-import SearchPage from './SearchPage'
-import { Route } from 'react-router-dom'
 import './App.css'
 
 /**
@@ -11,7 +9,7 @@ import './App.css'
 class BooksApp extends Component {
     state = {
         books: [],
-
+        showSearchPage: false
     }
 
     componentDidMount() {
@@ -22,29 +20,20 @@ class BooksApp extends Component {
 
     //To move books on the shelves: using update method from API
     moveShelf = (book, shelf) => {
-        BooksAPI.update(book, shelf).then(() => {
-            book.shelf = shelf
-            this.setState(state => ({
-                books: state.books.filter(b => b.id !== book.id).concat(book)
-            }))
+        BooksAPI.update(book, shelf);
+
+        BooksAPI.getAll().then((books) => {
+            this.setState({ books: books })
         })
     }
 
     render() {
         return (
             <div className="app">
-                <Route exact path="/" render={() => (
-                    <Home
-                        books={this.state.books}
-                        moveShelf={this.moveShelf}
-                    />
-                )} />
-                <Route path="/search" render={() => (
-                    <SearchPage
-                        books={this.state.books}
-                        moveShelf={this.moveShelf}
-                    />
-                )} />
+                <Home
+                    books={this.state.books}
+                    moveShelf={this.moveShelf}
+                />
             </div>
         )
     }
